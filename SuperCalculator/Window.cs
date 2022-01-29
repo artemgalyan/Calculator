@@ -97,9 +97,5 @@ namespace OOPExample
             _answerBox.Set(result.ToString("0.00"));
             _expressionFieldNeedsToBeCleared = true;
         }
-        private void ExpressionTextBox_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

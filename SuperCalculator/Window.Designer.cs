@@ -122,7 +122,6 @@
             // 
             resources.ApplyResources(this.ExpressionTextBox, "ExpressionTextBox");
             this.ExpressionTextBox.Name = "ExpressionTextBox";
-            this.ExpressionTextBox.TextChanged += new System.EventHandler(this.ExpressionTextBox_TextChanged);
             // 
             // AnswerTextBox
             // 
