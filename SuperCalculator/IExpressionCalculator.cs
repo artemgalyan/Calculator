@@ -1,7 +1,9 @@
-﻿namespace OOPExample
+﻿using System.Threading.Tasks;
+
+namespace OOPExample
 {
     public interface IExpressionCalculator
     {
-        double EvaluateExpression(string expression);
+        Task<string> EvaluateExpression(string expression);
     }
 }

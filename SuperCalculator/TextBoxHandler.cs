@@ -11,7 +11,6 @@ namespace OOPExample
             _textBox = textBox;
             _text = "";
         }
-
         public virtual void Push(string expression)
         {
             _text += expression;
