@@ -82,12 +82,20 @@ namespace OOPExample
         string ProcessExpressionString(in string input)
         {
             string result = input;
-            result = result.Replace("++", "+");
-            result = result.Replace("-+", "-");
-            result = result.Replace("+-", "-");
-            result = result.Replace("--", "+");
-            result = result.Replace("(-", "(0-");
-            result = result.Replace("(+", "(");
+            var oldResult = result;
+            do
+            {
+                oldResult = result;
+                result = result.Replace(", -", ", 0-");
+                result = result.Replace(", +", ", ");
+                result = result.Replace("++", "+");
+                result = result.Replace("-+", "-");
+                result = result.Replace("+-", "-");
+                result = result.Replace("--", "+");
+                result = result.Replace("(-", "(0-");
+                result = result.Replace("(+", "(");
+            } while (oldResult != result);
+
             if (result[0] == '+' || result[0] == '-')
                 result = "0" + result;
             return result;

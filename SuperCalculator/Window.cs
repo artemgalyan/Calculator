@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace OOPExample
@@ -9,19 +9,34 @@ namespace OOPExample
         private readonly TextBoxHandler _expressionBox;
         private readonly TextBoxHandler _answerBox;
         private bool _expressionFieldNeedsToBeCleared;
+        private Stack<string> _states; 
 
         public Form1()
         {
             InitializeComponent();
+            _states = new Stack<string>();
             _expressionBox = new TextBoxHandler(ExpressionTextBox);
             _answerBox = new TextBoxHandler(AnswerTextBox);
             _expressionFieldNeedsToBeCleared = false;
         }
 
+        private void AddState(string state)
+        {
+            _states.Push(state);
+        }
+        private void RestoreState()
+        {
+            if (_states.Count > 0)
+            {
+                _expressionBox.Set(_states.Pop());
+            }
+        }
         private void ClearTextFieldIfNeeded()
         {
+            
             if (_expressionFieldNeedsToBeCleared)
             {
+                _states.Clear();
                 _expressionBox.Clear();
                 _expressionFieldNeedsToBeCleared = false;
             }
@@ -29,78 +44,92 @@ namespace OOPExample
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("1");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
+            string s = _expressionBox.GetExpression();
             ClearTextFieldIfNeeded();
             _expressionBox.Push("2");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("3");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("4");
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("5");
         }
 
         private void button6_Click_1(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("6");
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("7");
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("8");
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("9");
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("0");
         }
 
         private void buttonPlus_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("+");
         }
 
         private void buttonMinus_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("-");
         }
 
         private void buttonMultiply_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("*");
         }
@@ -117,62 +146,77 @@ namespace OOPExample
 
         private void buttonOpenBracket_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("(");
         }
 
         private void buttonCloseBracket_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push(")");
         }
 
         private void buttonDivision_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("/");
         }
 
         private void buttonMin_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("min(");
         }
 
         private void buttonMax_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("max(");
         }
 
         private void buttonComma_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push(", ");
         }
 
         private void buttonPowFunction_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("pow(");
         }
 
         private void buttonCosFunction_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("cos(");
         }
 
         private void buttonSinFunction_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("sin(");
         }
 
         private void buttonTgFunction_Click(object sender, EventArgs e)
         {
+            AddState(_expressionBox.GetExpression());
             ClearTextFieldIfNeeded();
             _expressionBox.Push("tg(");
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            RestoreState();
         }
     }
 }
